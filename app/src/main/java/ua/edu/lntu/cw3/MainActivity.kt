@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ua.edu.lntu.cw3.data.Datasource
 import ua.edu.lntu.cw3.model.Information
 import ua.edu.lntu.cw3.ui.theme.IPZ_KR_3Theme
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyContent()
+                    InfoList(informationList = Datasource().loadInformation(), modifier = Modifier)
                 }
             }
         }
@@ -45,18 +46,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyContent() {
-    Box(contentAlignment = Alignment.Center) {
-
-    }
-}
-
-@Composable
 fun Content(information: Information, modifier: Modifier) {
     Card(modifier = modifier) {
-        Column {
-            Text(text = information.name)
-            Spacer(modifier.height(5.dp))
+        Column(modifier.padding(10.dp)) {
+            Text(text = information.name, fontSize = 40.sp)
+            Spacer(modifier.height(3.dp))
             Text(text = information.desc)
         }
     }
@@ -64,7 +58,7 @@ fun Content(information: Information, modifier: Modifier) {
 
 @Composable
 fun InfoList(informationList: List<Information>, modifier: Modifier) {
-    LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+    LazyVerticalGrid(columns = GridCells.Fixed(2), userScrollEnabled = true) {
         items(informationList) {
             information -> Content(
                 information = information,
