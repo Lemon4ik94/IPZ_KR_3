@@ -52,10 +52,18 @@ fun Content(information: Information, modifier: Modifier) {
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+
+@Preview(showBackground = true)
 @Composable
-fun ContentPreview() {
-    IPZ_KR_3Theme {
-        MyContent()
-    }
+fun infoPreview() {
+    Content(Information("Oleh", "Borbych"), modifier = Modifier)
 }
+
+
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun ContentPreview() {
+//    IPZ_KR_3Theme {
+//        MyContent()
+//    }
+//}
